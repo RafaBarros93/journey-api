@@ -2,7 +2,7 @@ import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
 import dayjs from "dayjs";
-import { TripCreateService } from "../../services/trip/create-trip.service";
+import { TripCreateService } from "../../services/trips/create-trip.service";
 import { prisma } from "../../lib/prisma";
 
 

@@ -3,7 +3,7 @@ import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
 
 import { prisma } from "../../lib/prisma";
-import { TripConfirmEmailService } from "../../services/trip/confirm-email.service";
+import { TripConfirmEmailService } from "../../services/trips/confirm-email.service";
 
 
 

@@ -1,10 +1,10 @@
 import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
-
 import { prisma } from "../../lib/prisma";
-import { TripConfirmEmailService } from "../../services/trip/confirm-email.service";
-import { ParticipantsConfirmService } from "../../services/trip/confirm-participant";
+import { ParticipantsConfirmService } from "../../services/participants/confirm-participant";
+
+
 
 
 

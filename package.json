@@ -2,10 +2,9 @@
   "name": "joruney-api",
   "version": "1.0.0",
   "main": "index.js",
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsx watch --env-file .env src/main.ts"
+    "start": "tsx watch --env-file .env src/server.ts"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +18,7 @@
     "typescript": "^5.5.3"
   },
   "dependencies": {
+    "@fastify/cors": "^9.0.1",
     "@prisma/client": "^5.16.2",
     "dayjs": "^1.11.11",
     "fastify": "^4.28.1",

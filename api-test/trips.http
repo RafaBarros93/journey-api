@@ -1,0 +1,36 @@
+###
+GET http://localhost:3000/list
+
+###
+POST http://localhost:3000/trips
+Content-Type: application/json
+
+{
+    "destination": "Belo Horizonte",
+    "starts_at" :"2024-07-10T00:45:18.175Z",
+    "ends_at" :"2024-07-10T00:45:18.175Z"
+
+}
+
+###
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "destination": "Rio de Janeiro",
+    "starts_at" :"2024-07-10T00:45:18.175Z",
+    "ends_at" :"2024-07-10T00:45:18.175Z"
+
+}
+
+
+###
+PUT  http://localhost:30002
+Content-Type: application/json
+
+{
+    "completed": true
+}
+
+###
+DELETE   http://localhost:3002/register/01c4d58d-50d1-4d8a-8e55-e6b81f56cf41

@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { dayjs } from "../../lib/days";
+import { ClientError } from "../../handlers/errors/client-erro";
 
 export type CreateActivityInput = {
     tripId: string
@@ -28,7 +29,7 @@ export class GetActivityService {
             }
         );
 
-        if (!trip) throw new Error('Trip not found.');
+        if (!trip) throw new ClientError('Trip not found.');
 
         const differenceInDaysBetweenTripStartAndEnd = dayjs(trip.ends_at).diff(trip.starts_at, 'days');
 

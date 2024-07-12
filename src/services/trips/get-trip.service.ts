@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { ClientError } from "../../handlers/errors/client-erro";
 
 
 export type GetTripOutput = {
@@ -35,7 +36,7 @@ export class TripGetByIdService {
             where: { id: tripId }
         });
 
-        if (!trip) throw new Error('Trip not found');
+        if (!trip) throw new ClientError('Trip not found');
 
         const output: GetTripOutput = {
             trip: {

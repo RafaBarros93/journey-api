@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { ClientError } from "../../handlers/errors/client-erro";
 
 
 export class GetParticipantsService {
@@ -10,10 +11,16 @@ export class GetParticipantsService {
     }
     public async getParticipants(tripId: string) {
 
-        const participants = await this.repository.participant.findMany({ where: { trip_id: tripId } });
+        const trip = await this.repository.trip.findUnique({
+            where: { id: tripId },
+            include: {
+                participants: true
+            }
+        });
 
+        if (!trip) throw new ClientError('Trip not found');
 
-        return { participants };
+        return { participants: trip.participants };
 
     }
 

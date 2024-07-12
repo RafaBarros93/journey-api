@@ -3,6 +3,7 @@ import { createEmailConfirm, Participants } from "../../handlers/confirm.email.h
 import { prisma } from "../../lib/prisma";
 import { env } from "../../../env";
 import { dayjs } from "../../lib/days";
+import { ClientError } from "../../handlers/errors/client-erro";
 
 export type UpdateTripInput = {
     tripId: string,
@@ -25,13 +26,13 @@ export class TripUpdateService {
         : Promise<boolean> {
 
 
-        if (dayjs(starts_at).isAfter(ends_at)) throw new Error("Invalid strip start date.");
+        if (dayjs(starts_at).isAfter(ends_at)) throw new ClientError("Invalid strip start date.");
 
-        if (dayjs(ends_at).isBefore(starts_at)) throw new Error("Invalid strip end date.");
+        if (dayjs(ends_at).isBefore(starts_at)) throw new ClientError("Invalid strip end date.");
 
         const trip = await this.repository.trip.findUnique({ where: { id: tripId } });
 
-        if (!trip) throw new Error('Trip not found');
+        if (!trip) throw new ClientError('Trip not found');
 
 
         await this.repository.trip.update({

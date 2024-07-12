@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { createEmailConfirm, Participants } from "../../handlers/confirm.email.handlers";
 import { dayjs } from "../../lib/days";
 import { env } from "../../../env";
+import { ClientError } from "../../handlers/errors/client-erro";
 
 
 export type CreateInviteInput = {
@@ -25,7 +26,7 @@ export class CreateInviteService {
 
         const trip = await this.repository.trip.findUnique({ where: { id: tripId } });
 
-        if (!trip) throw new Error('Trip not found.');
+        if (!trip) throw new ClientError('Trip not found.');
 
         const participant = await this.repository.participant.create({
             data: {

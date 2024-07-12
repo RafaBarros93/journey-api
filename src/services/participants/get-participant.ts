@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { ClientError } from "../../handlers/errors/client-erro";
 
 
 export class GetParticipantService {
@@ -19,6 +20,8 @@ export class GetParticipantService {
             },
             where: { id: participantId }
         });
+
+        if (!participant) throw new ClientError('Participat not found');
 
 
         return { participant };

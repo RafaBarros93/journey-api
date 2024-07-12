@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { dayjs } from "../../lib/days";
+import { ClientError } from "../../handlers/errors/client-erro";
 
 export type CreateActivityInput = {
     tripId: string
@@ -24,7 +25,7 @@ export class GetLinkService {
             }
         );
 
-        if (!trip) throw new Error('Trip not found.');
+        if (!trip) throw new ClientError('Trip not found.');
 
 
         return { links: trip.links };

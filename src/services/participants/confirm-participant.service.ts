@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { FastifyReply } from "fastify/types/reply";
 import { env } from "../../../env";
+import { ClientError } from "../../handlers/errors/client-erro";
 
 
 
@@ -19,7 +20,7 @@ export class ParticipantsConfirmService {
 
         const participant = await this.repository.participant.findUnique({ where: { id: participantID } });
 
-        if (!participant) throw new Error('Participant not found;');
+        if (!participant) throw new ClientError('Participant not found;');
 
         if (participant.is_confirmed) reply.redirect(`${env.WEB_BASE_URL}/trips/${participant.trip_id}`);
 

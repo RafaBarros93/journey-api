@@ -13,6 +13,7 @@ import { createInvite } from './participants/create-invite';
 import { updateTrip } from './trips/update-trip';
 import { getTrip } from './trips/get-trip';
 import { getParticipant } from './participants/get-participant';
+import { errorHandler } from '../handlers/errors/error.handlers';
 
 const app = Fastify({
     logger: true
@@ -35,6 +36,8 @@ const routes = [
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
+
+app.setErrorHandler(errorHandler);
 
 routes.forEach(route => {
     app.register(route)

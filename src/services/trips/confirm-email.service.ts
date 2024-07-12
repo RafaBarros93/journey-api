@@ -3,6 +3,7 @@ import { createEmailConfirm, Participants } from "../../handlers/confirm.email.h
 import { FastifyReply } from "fastify/types/reply";
 import { env } from "../../../env";
 import { dayjs } from "../../lib/days";
+import { ClientError } from "../../handlers/errors/client-erro";
 
 
 
@@ -32,7 +33,7 @@ export class TripConfirmEmailService {
             }
         })
 
-        if (!trip) throw new Error('Trip not found');
+        if (!trip) throw new ClientError('Trip not found');
 
         if (trip.is_confirmed) return reply.redirect(`${env.WEB_BASE_URL}/trips/${tripId}`);
 

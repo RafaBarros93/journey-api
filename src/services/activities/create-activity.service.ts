@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { dayjs } from "../../lib/days";
+import { ClientError } from "../../handlers/errors/client-erro";
 
 export type CreateActivityInput = {
     tripId: string
@@ -23,11 +24,11 @@ export class CreateActivityService {
 
         const trip = await this.repository.trip.findUnique({ where: { id: tripId } });
 
-        if (!trip) throw new Error('Trip not found.');
+        if (!trip) throw new ClientError('Trip not found.');
 
-        if (dayjs(occurs_at).isBefore(trip.starts_at)) throw new Error('Invalid activity date.');
+        if (dayjs(occurs_at).isBefore(trip.starts_at)) throw new ClientError('Invalid activity date.');
 
-        if (dayjs(occurs_at).isAfter(trip.ends_at)) throw new Error('Invalid activity date.');
+        if (dayjs(occurs_at).isAfter(trip.ends_at)) throw new ClientError('Invalid activity date.');
 
         const newActivity = await this.repository.activity.create({
             data: {

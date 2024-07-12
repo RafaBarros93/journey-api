@@ -2,13 +2,11 @@ import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
 import { prisma } from "../../lib/prisma";
-import { ParticipantsConfirmService } from "../../services/participants/confirm-participant";
+import { ParticipantsConfirmService } from "../../services/participants/confirm-participant.service";
 
 
 
-
-
-export const confirmPartipant = async (app: FastifyInstance) => {
+export const confirmParticipant = async (app: FastifyInstance) => {
 
     const partcipant = ParticipantsConfirmService.build(prisma);
 

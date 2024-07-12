@@ -42,8 +42,8 @@ export class TripConfirmEmailService {
         })
 
         await Promise.all(
-            trip.participants.map(async (paticipant) => {
-                const confirmationLink = `${env.API_BASE_URL}/participants/${paticipant.id}/confirm`
+            trip.participants.map(async (participant) => {
+                const confirmationLink = `${env.API_BASE_URL}/participants/${participant.id}/confirm`
 
                 const formattedStartDate = dayjs(trip.starts_at).format('LL')
                 const formattedEndDate = dayjs(trip.ends_at).format('LL')
@@ -64,7 +64,7 @@ export class TripConfirmEmailService {
                 const subject = `Confirme sua presença na viagem para ${trip.destination} em ${formattedStartDate}`
 
                 const participants: Participants = {
-                    owner_email: paticipant.email,
+                    owner_email: participant.email,
                     html,
                     subject
                 }

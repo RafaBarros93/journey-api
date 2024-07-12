@@ -30,6 +30,12 @@ export class TripCreateService {
     public async createTripService({ destination, starts_at, ends_at, owner_name, owner_email, emails_to_invite }: TripCreateInput)
         : Promise<TripCreateOutput> {
 
+
+        if (dayjs(starts_at).isAfter(ends_at)) throw new Error("Invalid strip start date.");
+
+        if (dayjs(ends_at).isBefore(starts_at)) throw new Error("Invalid strip end date.");
+
+
         const trip = await this.repository.trip.create({
             data: {
                 destination,

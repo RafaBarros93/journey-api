@@ -6,7 +6,7 @@ import { env } from '../env';
 const start = async () => {
     try {
         app.register(cors, {
-            origin: env.WEB_BASE_URL
+            origin: "*"
         })
 
         await app.listen({ port: 8000 })

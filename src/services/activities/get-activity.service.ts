@@ -45,7 +45,7 @@ export class GetActivityService {
 
         });
 
-        return activities;
+        return { listActivities: activities };
     }
 
 }

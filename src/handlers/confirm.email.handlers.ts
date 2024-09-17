@@ -1,8 +1,6 @@
 
 import { getEmailClient } from "../lib/mail";
 import nodemailer from 'nodemailer';
-import { env } from "../../env";
-import { dayjs } from "../lib/days";
 
 export type Participants = {
   owner_name?: string,

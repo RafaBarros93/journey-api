@@ -47,6 +47,8 @@ export class TripUpdateService {
             }
         });
 
+        await this.repository.activity.deleteMany({ where: { trip_id: tripId } })
+
 
         return true;
     }
